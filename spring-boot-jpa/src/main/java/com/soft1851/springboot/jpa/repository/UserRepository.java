@@ -1,6 +1,8 @@
 package com.soft1851.springboot.jpa.repository;
 
 import com.soft1851.springboot.jpa.model.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -90,4 +92,53 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Modifying
     @Query(value = " insert into user(user_name,password,email) values (:userName,:password,:email) ",nativeQuery = true)
     int insertUser (@Param("userName")String userName,@Param("password")String password,@Param("email")String email);
+
+    /**
+     * 自定义方法——分页查找所有
+     * @param pageable
+     * @return
+     */
+    @Override
+    @Query("select user from User user")
+    Page<User> findAll(Pageable pageable);
+
+    /**
+     *自定义方法——根据nickname查询信息
+     * @param nickName
+     * @param pageable
+     * @return
+     */
+    @Query(value = "select user from User user where user.nickName=?1")
+    Page<User> findByNickName(String nickName, Pageable pageable);
+
+    /**
+     * 自定义方法——根据age查询信息
+     * @param age
+     * @param pageable
+     * @return
+     */
+    @Query(value = "select * from User user where  user.age=:age", nativeQuery = true)
+    Page<User> findByAge(String age, Pageable pageable);
+
+    /**
+     * 注解内的自定义方法————根据email查询
+     * @param email
+     * @return
+     */
+    List<User> findByEmail(String email);
+
+    /**
+     *  注解内的自定义方法————根据password查询
+     * @param password
+     * @return
+     */
+    List<User> findByPassword(String password);
+
+
+    /**
+     * 查询第一条数据——根据年龄降序排列
+     * @return
+     */
+    User findFirstByOrderByAgeDesc();
+
 }

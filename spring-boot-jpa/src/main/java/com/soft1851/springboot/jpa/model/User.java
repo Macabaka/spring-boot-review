@@ -19,6 +19,10 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "User.findByEmail",query = "select user from User user where user.email=?1"),
+        @NamedQuery(name = "User.findByPassword",query = "select user from User user where user.password=?1")
+})
 public class User {
 
     @Id
