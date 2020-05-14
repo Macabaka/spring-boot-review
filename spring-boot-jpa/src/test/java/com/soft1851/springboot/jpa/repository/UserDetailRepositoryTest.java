@@ -11,13 +11,12 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class UserDetailRepositoryTest {
-    @Resource
-    UserDetailRepository userDetailRepository;
+
     @Test
     void findUserInfo() {
-        List<UserInfo> userInfos = userDetailRepository.findUserInfo("1");
-        for (UserInfo userInfo : userInfos) {
-            System.out.println(userInfo.getIntroduction());
-        }
+//        List<UserInfo> userInfos = userDetailRepository.findUserInfo("1");
+//        for (UserInfo userInfo : userInfos) {
+//            System.out.println(userInfo.getIntroduction());
+//        }
     }
 }
