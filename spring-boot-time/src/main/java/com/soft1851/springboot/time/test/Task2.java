@@ -1,4 +1,4 @@
-package com.soft1851.springboot.time;
+package com.soft1851.springboot.time.test;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

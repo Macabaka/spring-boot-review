@@ -11,7 +11,12 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  */
 public interface TeacherRepository extends JpaSpecificationExecutor<Teacher> , JpaRepository<Teacher,Long> {
 
-     Teacher findById(int id);
+     /**
+      * 根据id查询教师
+      * @param id
+      * @return
+      */
+     Teacher findTeacherById(int id);
 
 
 }
