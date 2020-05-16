@@ -11,10 +11,17 @@ spring:
     hibernate:
       #创建表
       ddl-auto: update
+    # 批量插入
+    properties:
+      jdbc:
+        batch_size: 500
+        batch_versioned_data: true
+        order_inserts: true
+        order_updates: true
   datasource:
     url: jdbc:mysql://localhost:3306/test1?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
-    username: root
-    password: root
+    username: ENC(b5bhJDtSf/ovJmFQ5ZvU5w==)
+    password: ENC(b5bhJDtSf/ovJmFQ5ZvU5w==)
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 10
@@ -35,3 +42,17 @@ spring:
           starttls:
             enable: true
             required: true
+
+# 设置单个文件大小，单次请求文件的总大小
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+#jasypt:
+#  encryptor:
+#    password: 123456
+
+#encryptor:
+#  property: ENC(b5bhJDtSf/ovJmFQ5ZvU5w==)
+
+

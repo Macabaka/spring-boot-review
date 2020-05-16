@@ -19,33 +19,33 @@ import java.util.List;
  * @Date: 2020/5/15 20:15
  * @Description:
  */
-@Slf4j
-@Configuration
-public class AutoTask implements SchedulingConfigurer {
+//@Slf4j
+//@Configuration
+public class AutoTask {
 //    0/3 * * * * ?
 
-    @Resource
-    private CronRepository cronRepository;
-    @Resource
-    private MailService mailService;
-    @Resource
-    private UserRepository userRepository;
-
-    private List<User> users;
-
-    @Override
-    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
-        users = userRepository.findAll();
-        taskRegistrar.addTriggerTask(this::process,triggerContext -> {
-            //查询id为1的cron
-            String cron = cronRepository.findCronByCronId(1).getCron();
-            log.info(cron);
-            if (cron.isEmpty()){
-                log.info("cron为空");
-            }
-            return new CronTrigger(cron).nextExecutionTime(triggerContext);
-        });
-    }
+//    @Resource
+////    private CronRepository cronRepository;
+////    @Resource
+////    private MailService mailService;
+////    @Resource
+////    private UserRepository userRepository;
+////
+////    private List<User> users;
+////
+////    @Override
+////    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+//        users = userRepository.findAll();
+//        taskRegistrar.addTriggerTask(this::process,triggerContext -> {
+//            //查询id为1的cron
+//            String cron = cronRepository.findCronByCronId(1).getCron();
+//            log.info(cron);
+//            if (cron.isEmpty()){
+//                log.info("cron为空");
+//            }
+//            return new CronTrigger(cron).nextExecutionTime(triggerContext);
+//        });
+//    }
 
 
 //    @Override
@@ -59,10 +59,11 @@ public class AutoTask implements SchedulingConfigurer {
 //        });
 //    }
 
-    private  void process(){
-        for(User user:users){
-            mailService.sendMail(user.getEmail(),"生日贺卡","<h1>祝"+user.getNickName()+"生日快乐</h1>",null,null);
-            log.info(user.getNickName() + "生日贺卡发送成功");
-        }
-    }
+//    private  void process(){
+//        for(User user:users){
+//            mailService.sendMail(user.getEmail(),"生日贺卡","<h1>祝"+user.getNickName()+"生日快乐</h1>",null,null);
+//            log.info(user.getNickName() + "生日贺卡发送成功");
+//        }
+//    }
+
 }

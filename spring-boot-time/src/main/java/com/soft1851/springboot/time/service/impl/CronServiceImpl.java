@@ -22,4 +22,9 @@ public class CronServiceImpl implements CronService {
     public void updateCron(Cron cron) {
         cronRepository.updateCron(cron.getCronId(), cron.getCron(), cron.getCronName());
     }
+
+    @Override
+    public Cron findCronBtCronId(int cronId) {
+        return cronRepository.findCronByCronId(cronId);
+    }
 }

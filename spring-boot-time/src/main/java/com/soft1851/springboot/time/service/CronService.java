@@ -10,4 +10,7 @@ import com.soft1851.springboot.time.model.Cron;
 public interface CronService {
 
     void updateCron(Cron cron);
+
+
+    Cron findCronBtCronId(int cronId);
 }
