@@ -1,6 +1,9 @@
 package com.soft1851.springboot.time.service;
 
+import com.alicp.jetcache.anno.CacheType;
+import com.alicp.jetcache.anno.Cached;
 import com.soft1851.springboot.time.model.Cron;
+import org.hibernate.annotations.Cache;
 
 /**
  * @author Johnny
@@ -9,6 +12,7 @@ import com.soft1851.springboot.time.model.Cron;
  */
 public interface CronService {
 
+    @Cached(expire=3600,cacheType= CacheType.REMOTE)
     void updateCron(Cron cron);
 
 
